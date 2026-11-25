@@ -239,7 +239,7 @@ radioAudio.addEventListener('error',()=>{radioStatus.textContent='Streamfejl –
 // Robust smooth auto-scroll for wall-mounted iPad: continuous down/up, 5-second edge pauses.
 (function autoDashboardScroll(){
  let direction=1, pausedUntil=0, lastTime=0, edgePauseUntil=0, autoScrolling=false;
- const USER_PAUSE_MS=25000, EDGE_PAUSE_MS=5000, SPEED=7;
+ const USER_PAUSE_MS=10000, EDGE_PAUSE_MS=5000, SPEED=7;
  const pauseForUser=()=>{ if(!autoScrolling) pausedUntil=Date.now()+USER_PAUSE_MS; };
  ['touchstart','pointerdown','wheel','keydown'].forEach(evt=>window.addEventListener(evt,pauseForUser,{passive:true}));
  function getMaxScroll(){
