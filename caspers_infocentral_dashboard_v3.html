@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="da"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>Casper's Infocentral V2</title>
+<style>
+:root{--bg:#090d1b;--text:#f3f6ff;--muted:#a9b5cf;--line:#2b3555;--cyan:#45d8ff;--violet:#a58bff;--pink:#ff77c8;--green:#53e6a8;--panel:rgba(20,27,51,.82)}
+*{box-sizing:border-box}body{margin:0;padding:18px;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 10% 0%,#243a71 0,transparent 33%),radial-gradient(circle at 90% 8%,#542b72 0,transparent 29%),linear-gradient(145deg,#080d19,#11152c 60%,#08121e);min-height:100vh}.wrap{max-width:1400px;margin:auto}.header{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:5px 0 18px}.brand{display:flex;align-items:center;gap:12px}.logo{width:52px;height:52px;border-radius:17px;background:linear-gradient(135deg,#44d9ff,#8974ff 65%,#ff79c7);display:grid;place-items:center;font-size:26px;box-shadow:0 0 25px #6c7bff55}.title{font-size:clamp(22px,3.4vw,34px);font-weight:850;letter-spacing:.4px}.subtitle{color:var(--muted);font-size:13px;margin-top:4px}.clock{text-align:right;font-size:clamp(27px,4vw,38px);font-weight:850;letter-spacing:1px}.clock small{display:block;font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:0}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.card{background:linear-gradient(145deg,rgba(25,35,65,.92),rgba(13,20,40,.92));border:1px solid rgba(125,157,255,.24);border-radius:23px;padding:17px;box-shadow:0 12px 30px #0003;position:relative;overflow:hidden}.card:before{content:"";position:absolute;top:-70px;right:-60px;width:160px;height:160px;background:radial-gradient(circle,#7b79ff24,transparent 70%);pointer-events:none}.weather-combined{grid-column:span 7;grid-row:2}.electricity{grid-column:span 5;grid-row:3}.radio{grid-column:span 5;grid-row:2}.dinner{grid-column:span 7;grid-row:3}.radar{grid-column:span 12;grid-row:4}.weather-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}.weather-mini{background:rgba(7,13,27,.35);border:1px solid rgba(125,157,255,.18);border-radius:17px;padding:12px}.weather-mini-head{font-weight:750;font-size:14px;margin-bottom:5px;color:#c5d7ff}.weather-mini .temp{font-size:clamp(30px,4vw,42px);margin:3px 0 6px}.weather-mini .weather-emoji{font-size:35px}.weather-mini .details{margin-top:8px;gap:5px}.weather-mini .pill{padding:6px 8px;font-size:11px}.weather-mini .buttons{margin-top:8px}.news{grid-column:span 12;grid-row:1}.ships{display:none}.radio{grid-column:span 5;grid-row:3}.electricity{grid-column:span 5;grid-row:2}.dinner{grid-column:span 7;grid-row:3}.radar{grid-column:span 12;grid-row:4}.marine{grid-column:span 4}.quick{grid-column:span 8}.card h2{margin:0 0 13px;font-size:17px;display:flex;align-items:center;gap:8px}.iconbadge{width:34px;height:34px;border-radius:12px;display:inline-grid;place-items:center;background:linear-gradient(135deg,#1f8bbd,#695be0);font-size:18px}.muted{color:var(--muted);font-size:12px}.temp{font-size:clamp(42px,6vw,57px);font-weight:850;line-height:1;margin:5px 0 8px;background:linear-gradient(90deg,#fff,#90dfff);background-clip:text;color:transparent}.weatherline{display:flex;justify-content:space-between;align-items:center}.weather-emoji{font-size:47px;filter:drop-shadow(0 0 12px #9db8ff55)}.details{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}.pill{background:rgba(65,116,173,.22);border:1px solid rgba(99,168,220,.3);padding:8px 10px;border-radius:999px;font-size:12px}.btn{display:inline-flex;align-items:center;justify-content:center;background:rgba(53,83,142,.32);border:1px solid rgba(115,155,230,.35);border-radius:12px;padding:10px 13px;color:#f0f6ff;text-decoration:none;font-size:13px;font-weight:700;gap:6px;transition:.2s}.btn:hover{transform:translateY(-2px);filter:brightness(1.15)}.btn.primary{background:linear-gradient(135deg,#167fc7,#635ee8);border:0}.btn.green{background:linear-gradient(135deg,#08a67a,#1689a9);border:0}.buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.ticker-wrap{display:flex;align-items:center;overflow:hidden;border:1px solid rgba(105,145,255,.48);background:linear-gradient(120deg,rgba(12,20,42,.96),rgba(28,19,53,.94));border-radius:20px;min-height:132px;box-shadow:inset 0 0 28px rgba(89,111,255,.10),0 8px 26px rgba(0,0,0,.18)}.ticker-label{flex:none;background:linear-gradient(160deg,#ff4f82,#bb38bc);color:white;font-weight:950;font-size:13px;letter-spacing:1px;padding:18px 16px;align-self:stretch;display:flex;align-items:center;text-shadow:0 1px 5px #0003;box-shadow:4px 0 18px rgba(255,77,147,.18)}.ticker{overflow:hidden;flex:1;padding:14px 0}.ticker-track{display:flex;gap:14px;width:max-content;animation:newsScroll 100s linear infinite}.ticker-wrap:hover .ticker-track{animation-play-state:paused}.news-card{width:340px;min-height:104px;display:flex;gap:12px;background:linear-gradient(135deg,rgba(33,52,91,.98),rgba(17,27,50,.98));border:1px solid rgba(117,157,255,.38);border-radius:17px;padding:10px;color:#eaf2ff;text-decoration:none;align-items:center;box-shadow:0 5px 16px rgba(0,0,0,.18);transition:transform .25s,border-color .25s,box-shadow .25s}.news-card img{width:112px;height:82px;object-fit:cover;border-radius:12px;background:#273451;flex:none}.news-card .news-title{font-size:14px;line-height:1.4;font-weight:800}.news-card .news-source{font-size:11px;color:#9dc9ff;margin-top:7px;font-weight:650}.ticker-track:hover{animation-play-state:paused}@keyframes newsScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}.map-frame{height:260px;border-radius:16px;overflow:hidden;background:#0d1b30;border:1px solid #364b77}.map-frame iframe{width:100%;height:100%;border:0}.map-note{font-size:11px;color:var(--muted);margin-top:8px}.radio-art{background:radial-gradient(circle at 50% 30%,#4050a9,#161c42 65%);border:1px solid #4a5b9a;border-radius:17px;padding:18px;display:flex;align-items:center;gap:15px;min-height:120px}
+.radio-player{min-height:unset;padding:12px;gap:12px}.radio-controls{flex:1;min-width:0}.radio-name{font-size:20px}.radio-player .disc{width:62px;height:62px;flex:none}.volume-row{display:flex;align-items:center;gap:8px;margin-top:9px}.volume-row input{width:100%;accent-color:#8b9dff}.radio-player .buttons{margin-top:8px}.radio-player .btn{padding:8px 12px}.disc{width:74px;height:74px;border-radius:50%;background:repeating-radial-gradient(circle,#161a33 0 3px,#292e56 4px 7px);border:5px solid #7e8cff;box-shadow:0 0 24px #8c7aff55;display:grid;place-items:center;font-size:25px;animation:spin 12s linear infinite}.disc:after{content:"";width:14px;height:14px;border-radius:50%;background:#e2e8ff;position:absolute}@keyframes spin{to{transform:rotate(360deg)}}.radio-name{font-size:24px;font-weight:850}.list{display:grid;gap:8px}.item{background:rgba(9,15,29,.5);border:1px solid var(--line);border-radius:12px;padding:11px}.item a{color:#d9edff;text-decoration:none;font-weight:700}.quicklinks{display:flex;flex-wrap:wrap;gap:8px}.footer{text-align:center;color:#7788ad;font-size:11px;padding:16px 0 5px}.statusdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);margin-right:6px}
+@media(max-width:850px){body{padding:10px}.weather-combined,.news,.ships,.radio,.electricity,.dinner,.radar,.marine,.quick{grid-column:span 12;grid-row:auto}.weather-pair{grid-template-columns:1fr 1fr;gap:8px}.weather-mini{padding:10px}.header{align-items:flex-start}.clock{font-size:25px}.map-frame{height:240px}.news-card{width:270px}}@media(max-width:520px){.weather-pair{grid-template-columns:1fr}.weather-mini .details{gap:5px}.weather-mini .pill{font-size:10px;padding:5px 7px}}
+
+.clock-header{justify-content:flex-end;margin:0 0 10px;min-height:0}.clock-widget{position:relative;display:flex;align-items:center;gap:14px;padding:10px 18px;border-radius:20px;background:linear-gradient(120deg,rgba(25,36,70,.9),rgba(30,21,58,.92));border:1px solid rgba(126,145,255,.35);box-shadow:0 8px 28px rgba(0,0,0,.25),0 0 22px rgba(99,115,255,.12);overflow:hidden}.clock-glow{position:absolute;inset:-40px auto -40px -30px;width:120px;background:radial-gradient(circle,rgba(71,218,255,.22),transparent 70%);pointer-events:none}.clock-time{position:relative;font-size:clamp(32px,4.5vw,48px);font-weight:900;letter-spacing:2px;line-height:1;text-shadow:0 0 18px rgba(119,144,255,.28)}.clock-time small{display:block;font-size:12px;letter-spacing:0;color:#aab8dd;font-weight:600;margin-top:7px;text-align:right}.clock-label{display:flex;align-items:center;gap:7px;font-size:10px;letter-spacing:1.5px;font-weight:800;color:#8bdcff;white-space:nowrap}.clock-dot{width:7px;height:7px;border-radius:50%;background:#53e6a8;box-shadow:0 0 10px #53e6a8;animation:clockPulse 2s ease-in-out infinite}@keyframes clockPulse{50%{opacity:.45;transform:scale(.8)}}
+
+
+.clock-row{display:flex;justify-content:flex-end;margin-top:8px}.clock-widget{padding:6px 12px;border-radius:15px;gap:10px}.clock-time{font-size:clamp(26px,3.2vw,36px)}.clock-time small{font-size:10px;margin-top:4px}.clock-label{font-size:9px;letter-spacing:1px}
+@media(min-width:700px) and (max-width:1100px){body{padding:10px}.grid{gap:10px}.card{padding:13px;border-radius:18px}.ticker-wrap{min-height:92px}.news-card{width:270px;min-height:76px}.news-card img{width:86px;height:60px}.map-frame{height:300px}.weather-mini{padding:9px}.weather-mini .temp{font-size:34px}.weather-mini .weather-emoji{font-size:29px}.weather-mini .pill{padding:5px 7px;font-size:10px}.buttons{gap:6px;margin-top:8px}.btn{padding:8px 10px;font-size:12px}.clock-row{margin-top:5px}}
+
+/* Compact iPad news area: remove excess vertical whitespace */
+.news{padding:12px 14px 10px}
+.news h2{margin-bottom:8px}
+.ticker-wrap{min-height:72px;height:72px}
+.ticker{padding:5px 0}
+.news-card{min-height:60px;height:60px;width:245px;padding:6px;gap:8px}
+.news-card img{width:76px;height:48px}
+.news-card .news-title{font-size:12px;line-height:1.25}
+.news-card .news-source{font-size:9px;margin-top:3px}
+.news .buttons{margin-top:7px;gap:6px}
+.news .btn{padding:7px 10px;font-size:11px}
+.news #ticker-status{margin:5px 0 0;font-size:10px;line-height:1.2}
+.clock-row{margin-top:6px;justify-content:flex-end}
+.clock-widget{padding:5px 10px;gap:8px;border-radius:12px}
+.clock-time{font-size:25px}
+.clock-time small{font-size:9px;margin-top:3px}
+.clock-label{font-size:8px;letter-spacing:.7px}
+@media(min-width:700px) and (max-width:1100px){
+ body{padding:8px}
+ .grid{gap:9px}
+ .card{padding:12px;border-radius:17px}
+ .news{padding:10px 12px 8px}
+ .ticker-wrap{min-height:66px;height:66px}
+ .news-card{height:56px;min-height:56px;width:225px}
+ .news-card img{width:68px;height:44px}
+ .news .buttons{margin-top:5px}
+ .news #ticker-status{margin-top:3px}
+ .clock-row{margin-top:4px}
+ .map-frame{height:330px}
+}
+
+/* Larger, polished news ticker and revised iPad layout */
+.news{padding:14px 16px 12px}
+.ticker-wrap{height:126px;min-height:126px}
+.ticker-label{font-size:13px;padding:20px 17px}
+.ticker{padding:10px 0}
+.news-card{height:100px;min-height:100px;width:325px;padding:9px;gap:11px}
+.news-card img{width:100px;height:80px}
+.news-card .news-title{font-size:13px;line-height:1.35}
+.news-card .news-source{font-size:10px}
+.news .buttons{margin-top:9px}
+@media(min-width:700px) and (max-width:1100px){
+ .news{padding:12px 14px 10px}
+ .ticker-wrap{height:116px;min-height:116px}
+ .news-card{width:310px;height:92px;min-height:92px}
+ .news-card img{width:92px;height:74px}
+ .weather-combined{grid-column:span 7;grid-row:2}
+ .radio{grid-column:span 5;grid-row:2}
+}
+
+/* Clock on left + daily joke on right */
+.info-row{display:flex;justify-content:space-between;align-items:stretch;gap:12px;margin-top:10px}
+.info-row .clock-widget{justify-content:flex-start;min-width:220px}
+.info-row .clock-time small{text-align:left}
+.joke-widget{flex:1;min-width:0;padding:10px 14px;border-radius:15px;background:linear-gradient(120deg,rgba(21,42,68,.9),rgba(37,23,58,.94));border:1px solid rgba(91,209,255,.25);box-shadow:inset 0 0 18px rgba(88,137,255,.08);display:flex;flex-direction:column;justify-content:center}
+.joke-heading{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:#91dfff;font-weight:900;margin-bottom:5px}
+#daily-joke{font-size:clamp(12px,1.5vw,15px);font-weight:700;line-height:1.35;color:#f3f6ff}
+@media(max-width:600px){.info-row{flex-direction:column}.info-row .clock-widget{min-width:unset;justify-content:flex-start}.info-row .clock-time small{text-align:left}.joke-widget{min-height:72px}}
+
+
+.electricity-box{background:rgba(7,13,27,.4);border:1px solid rgba(125,157,255,.18);border-radius:16px;padding:12px}
+.current-price{font-size:clamp(28px,4vw,40px);font-weight:900;color:#f3f6ff;line-height:1.1}.price-sub{font-size:11px;color:var(--muted);margin-top:4px}.price-pills{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0}.price-pill{font-size:11px;padding:6px 9px;border-radius:999px;background:#193653;border:1px solid #3975a3}.price-chart{display:flex;align-items:flex-end;gap:3px;height:90px;margin-top:12px;padding:4px 0}.price-bar{flex:1;min-width:2px;border-radius:4px 4px 0 0;position:relative;background:linear-gradient(180deg,#55d9ff,#6477ff);opacity:.85}.price-bar.current{background:linear-gradient(180deg,#ff83bf,#ff4c81);opacity:1}.price-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:10px}.dinner-box{background:rgba(7,13,27,.4);border:1px solid rgba(125,157,255,.18);border-radius:16px;padding:14px;min-height:185px}.dinner-title{font-size:20px;font-weight:850;margin-bottom:7px;color:#f3f6ff}.dinner-desc{font-size:13px;line-height:1.5;color:#d7e4ff}.dinner-tip{font-size:11px;color:#9dc9ff;margin-top:10px}.dinner-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px}.dinner-options{display:grid;gap:10px;margin-top:12px}.dinner-option{background:rgba(25,35,65,.75);border:1px solid rgba(125,157,255,.2);border-radius:12px;padding:11px}.dinner-option h3{margin:0 0 5px;font-size:15px}.dinner-option p{margin:0;font-size:12px;line-height:1.4;color:#d7e4ff}.dinner-intro{color:var(--muted);font-size:13px;line-height:1.45}.radar-map{height:340px;border-radius:16px;overflow:hidden;background:#101b30;border:1px solid #364b77}.radar-map iframe{width:100%;height:100%;border:0}.radar-note{color:var(--muted);font-size:11px;margin-top:8px}
+@media(min-width:700px) and (max-width:1100px){.electricity{grid-column:span 5;grid-row:3}.radio{grid-column:span 5;grid-row:2}.dinner{grid-column:span 7;grid-row:3}.radar{grid-column:span 12;grid-row:4}}
+
+
+/* News ticker: show exactly three cards, rotate group every 10 seconds */
+.ticker-track{animation:none!important;width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;transform:none!important}
+.news-card{width:100%!important;min-width:0;height:100px;min-height:100px}
+.ticker-wrap:hover .ticker-track,.ticker-track:hover{animation:none!important}
+@media(max-width:700px){.ticker-track{grid-template-columns:1fr}.news-card{height:auto;min-height:75px}}
+
+/* Nakskov local events */
+.events{grid-column:span 12;grid-row:4}.events-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.event-item{display:flex;gap:10px;padding:10px;border-radius:14px;background:rgba(7,13,27,.42);border:1px solid rgba(125,157,255,.18);min-height:78px}.event-date{flex:none;width:48px;text-align:center;border-radius:10px;padding:6px 3px;background:linear-gradient(160deg,#2679c6,#6257d8);font-weight:800;font-size:12px}.event-date small{display:block;font-size:10px;opacity:.85}.event-info{min-width:0}.event-title{font-weight:800;font-size:13px;line-height:1.25}.event-meta{font-size:11px;color:var(--muted);margin-top:4px}.event-desc{font-size:11px;color:#c9d6f3;margin-top:4px;line-height:1.3}.event-links{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.events .event-refresh{margin-left:auto}.event-empty{padding:12px;color:var(--muted)}.radar{grid-row:5}
+@media(max-width:850px){.events{grid-column:span 12;grid-row:auto}.events-list{grid-template-columns:1fr 1fr}.radar{grid-row:auto}}
+@media(max-width:520px){.events-list{grid-template-columns:1fr}}
+
+
+/* LIGHT COASTAL THEME + GENTLE MOTION */
+:root{--bg:#eaf6fb;--text:#15334d;--muted:#52728a;--line:#c7dfea;--cyan:#1596c7;--violet:#6885c8;--pink:#f29d8e;--green:#29a87b;--panel:rgba(255,255,255,.78)}
+body{background:linear-gradient(180deg,#cdeeff 0%,#e8f6fb 34%,#f8f7ed 100%);color:#18384f}
+.card{background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(240,249,255,.84));border:1px solid rgba(255,255,255,.95);box-shadow:0 8px 26px rgba(42,103,142,.12),inset 0 1px 0 #fff;color:#193c55;backdrop-filter:blur(9px)}
+.card:before{background:radial-gradient(circle,#75d9ff32,transparent 72%)}
+.card h2{color:#173e5b}.muted{color:#55758b}.iconbadge{background:linear-gradient(135deg,#71c9e9,#9bc5ee);box-shadow:0 3px 9px #4f9ec333}
+.btn{background:rgba(214,239,251,.72);border:1px solid #b8d8ea;color:#18435e}.btn.primary{background:linear-gradient(135deg,#36a8d5,#598dd9);color:#fff}.btn.green{background:linear-gradient(135deg,#42b98b,#29a3b4);color:white}
+.weather-mini{background:linear-gradient(135deg,#e6f7ff,#f8fcff);border:1px solid #c5e4f3}.weather-mini-head{color:#2a668b}.temp{background:linear-gradient(90deg,#1679b2,#5db6df);background-clip:text;color:transparent}.weather-emoji{animation:weatherFloat 4s ease-in-out infinite}.weather-mini:nth-child(2) .weather-emoji{animation-delay:1.3s}
+.ticker-wrap{background:linear-gradient(120deg,#e5f5ff,#d5edff);border-color:#b7d9ec;box-shadow:inset 0 0 25px #8bd4f522,0 7px 22px #397ca21a}.ticker-label{background:linear-gradient(160deg,#67bfe5,#6e93d7);color:white}.news-card{background:linear-gradient(135deg,#fff,#eaf6ff);border-color:#c6e0f0;color:#1b3d55;box-shadow:0 4px 12px #4b86a51a}.news-card .news-source{color:#4383ad}
+.radio-art{background:linear-gradient(135deg,#d8efff,#e9e4ff);border-color:#c4daef}.disc{border-color:#83b9e7;box-shadow:0 0 24px #70b8e655}.disc:after{background:#fff}.item,.event-item,.weather-mini,.price-pill{color:#21445e}
+.electricity-box,.dinner-box{color:#24445d}.price-chart{filter:drop-shadow(0 3px 4px #74a8c422)}
+.events .event-item{background:linear-gradient(135deg,#fff,#edf8ff);border-color:#c8e3f1}.event-date{background:linear-gradient(135deg,#65bde1,#82a8e5);color:white}.event-links .btn{background:#f4fbff}
+.radar-map{border-color:#b9d9ea}.radar-note{color:#55758a}.footer{color:#6e8a9d}
+.coastal-hero{height:150px;border-radius:26px;margin:4px 0 15px;position:relative;overflow:hidden;background:linear-gradient(180deg,#87d2f3 0%,#b5e5f7 47%,#ffd9a3 60%,#3a9fbe 62%,#176b95 100%);box-shadow:0 10px 26px #3988ac22;border:1px solid #ffffffa8;text-align:center;color:#16465e}
+.hero-sun{position:absolute;width:64px;height:64px;border-radius:50%;right:13%;top:20px;background:radial-gradient(circle,#fff9ce,#ffd783 70%);box-shadow:0 0 36px #ffe69b88;animation:sunGlow 6s ease-in-out infinite}
+.hero-title{position:relative;z-index:2;padding-top:19px;font-size:clamp(24px,4vw,42px);font-weight:900;letter-spacing:.3px;text-shadow:0 2px 0 #ffffffb0;color:#174965}.hero-subtitle{position:relative;z-index:2;font-size:13px;font-weight:750;letter-spacing:2px;color:#286784}
+.hero-lighthouse{position:absolute;left:5%;top:22px;font-size:50px;z-index:2;filter:drop-shadow(0 4px 3px #32667a33);animation:lightSweep 8s ease-in-out infinite}.hero-boat{position:absolute;right:28%;bottom:21px;font-size:30px;z-index:3;animation:boatBob 4s ease-in-out infinite}.hero-bird{position:absolute;z-index:3;font-size:30px;color:#2d6680;font-weight:bold;animation:birdFly 14s linear infinite}.bird-one{top:35px;left:-30px}.bird-two{top:57px;left:-90px;animation-delay:6s;transform:scale(.7)}
+.hero-wave{position:absolute;left:-10%;width:120%;height:38px;border-radius:50%;bottom:-15px;background:#3b9fc0aa;animation:waveMove 7s ease-in-out infinite}.wave-b{bottom:-22px;background:#176c95aa;animation-duration:9s;animation-direction:reverse}
+@keyframes sunGlow{50%{transform:scale(1.07);box-shadow:0 0 48px #ffe69bba}}
+@keyframes boatBob{50%{transform:translateY(-5px) rotate(-2deg)}}
+@keyframes waveMove{50%{transform:translateX(3%) translateY(-5px)}}
+@keyframes birdFly{0%{transform:translateX(0) translateY(0) scale(.8)}45%{transform:translateX(55vw) translateY(-18px) scale(1)}100%{transform:translateX(115vw) translateY(3px) scale(.75)}}
+@keyframes weatherFloat{50%{transform:translateY(-5px)}}
+@keyframes lightSweep{50%{transform:translateY(-4px) rotate(2deg)}}
+.card{animation:cardEnter .65s ease both}.card:nth-child(2){animation-delay:.06s}.card:nth-child(3){animation-delay:.1s}.card:nth-child(4){animation-delay:.14s}.card:nth-child(5){animation-delay:.18s}.card:nth-child(6){animation-delay:.22s}.card:nth-child(7){animation-delay:.26s}
+@keyframes cardEnter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.statusdot{animation:clockPulse 2s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+@media(max-width:700px){.coastal-hero{height:125px}.hero-lighthouse{font-size:36px;left:3%}.hero-boat{right:15%;font-size:25px}.hero-title{padding-top:22px}}
+
+
+/* Correct desktop layout: events card spans full width above electricity and dinner */
+@media(min-width:851px){
+ .weather-combined{grid-column:span 7;grid-row:2}
+ .radio{grid-column:span 5;grid-row:2}
+ .events{grid-column:span 12;grid-row:3}
+ .electricity{grid-column:span 5;grid-row:4}
+ .dinner{grid-column:span 7;grid-row:4}
+ .radar{grid-column:span 12;grid-row:5}
+}
+@media(max-width:850px){
+ .weather-combined,.radio,.events,.electricity,.dinner,.radar{grid-column:span 12;grid-row:auto}
+}
+
+
+.radio-stations{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.radio-stations .btn{padding:7px 9px;font-size:11px;white-space:nowrap}.radio-station.active{background:linear-gradient(135deg,#08a67a,#1689a9);border:0;color:white}
+
+/* Sponsor carousel */
+.sponsor-strip{display:flex;align-items:center;gap:10px;overflow:hidden;border-radius:14px;padding:8px 10px;margin:0 0 12px;background:linear-gradient(90deg,rgba(255,255,255,.09),rgba(88,148,205,.12));border:1px solid rgba(130,177,230,.22)}
+.sponsor-label{font-size:10px;letter-spacing:1px;font-weight:800;white-space:nowrap;color:#b8dfff;flex:none;max-width:135px;line-height:1.25}
+.sponsor-window{overflow:hidden;flex:1;min-width:0}
+.sponsor-track{display:flex;align-items:center;gap:28px;width:max-content;animation:sponsorSlide 24s linear infinite}
+.sponsor-strip:hover .sponsor-track{animation-play-state:paused}
+.sponsor-item{display:flex;align-items:center;justify-content:center;gap:8px;min-width:145px;height:48px}
+.sponsor-item img{max-width:132px;max-height:42px;object-fit:contain;border-radius:5px;background:#fff;padding:3px}
+.sponsor-item span{font-size:10px;font-weight:750;color:#d7e7ff;white-space:nowrap}
+@keyframes sponsorSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.sponsor-track{animation:none}}
+
+</style></head><body><div class="wrap">
+<div class="coastal-hero"><div class="hero-sun"></div><div class="hero-bird bird-one">⌁</div><div class="hero-bird bird-two">⌁</div><div class="hero-lighthouse">🗼</div><div class="hero-title">Casper’s Infocentral</div><div class="hero-subtitle">Albuen · Vestenskov · Nakskov</div><div class="hero-boat">⛵</div><div class="hero-wave wave-a"></div><div class="hero-wave wave-b"></div></div>
+<div class="grid">
+<section class="card news"><h2><span class="iconbadge">📰</span> Nyheder lige nu <span class="muted"><span class="statusdot"></span>Live feed</span></h2><div class="ticker-wrap"><div class="ticker-label">SENESTE</div><div class="ticker"><div class="ticker-track" id="ticker-track"><div class="news-card"><div class="news-title">Henter nyheder…</div></div></div></div></div><div class="buttons"><a class="btn primary" href="https://www.dr.dk/nyheder" target="_blank">DR Nyheder ↗</a><a class="btn" href="https://nyheder.tv2.dk/" target="_blank">TV 2 ↗</a><a class="btn" href="https://www.l-f.dk/" target="_blank">Folketidende ↗</a></div><p class="muted" id="ticker-status">DR og TV 2 · Klik på nyhed for at læse mere.</p><div class="info-row"><div class="clock-widget"><div class="clock-glow"></div><div class="clock-time" id="clock">--:--<small id="date"></small></div><div class="clock-label"><span class="clock-dot"></span> LIVE · LOLLAND</div></div><div class="joke-widget"><div class="joke-heading">😂 Dagens joke</div><div id="daily-joke">Henter dagens joke…</div></div></div></section>
+
+<section class="card weather-combined"><h2><span class="iconbadge">🌦️</span> Vejret lige nu</h2><div class="weather-pair"><div class="weather-mini"><div class="weather-mini-head">📍 Albuen · Nakskov</div><div class="weatherline"><div><div class="temp" id="alb-temp">--°C</div><div id="alb-desc" class="muted">Henter vejrdata…</div></div><div class="weather-emoji" id="alb-emoji">🌬️</div></div><div class="details"><span class="pill" id="alb-wind">Vind --</span><span class="pill" id="alb-gust">Vindstød --</span><span class="pill" id="alb-dir">Retning --</span></div><div class="buttons"><a class="btn" href="https://www.dmi.dk/vejr/til-lands/byvejr/4900-nakskov/" target="_blank">DMI ↗</a><a class="btn" href="https://www.yr.no/" target="_blank">Yr ↗</a></div></div><div class="weather-mini"><div class="weather-mini-head">📍 Vestenskov · Lolland</div><div class="weatherline"><div><div class="temp" id="ves-temp">--°C</div><div id="ves-desc" class="muted">Henter vejrdata…</div></div><div class="weather-emoji" id="ves-emoji">☀️</div></div><div class="details"><span class="pill" id="ves-wind">Vind --</span><span class="pill" id="ves-gust">Vindstød --</span><span class="pill" id="ves-dir">Retning --</span></div><div class="buttons"><a class="btn" href="https://www.dmi.dk/" target="_blank">DMI ↗</a><a class="btn" href="https://www.yr.no/" target="_blank">Yr ↗</a></div></div></div></section>
+<section class="card electricity"><h2><span class="iconbadge">⚡</span> Strømpriser · DK2</h2><div class="electricity-box"><div class="muted" id="price-current-label">Aktuel elpris · inkl. moms, estimeret samlet pris</div><div class="current-price" id="price-current">Henter…</div><div class="price-sub" id="price-time">Opdaterer priser</div><div class="price-pills"><span class="price-pill" id="price-cheapest">Billigste: --</span><span class="price-pill" id="price-expensive">Dyreste: --</span></div><div class="price-chart" id="price-chart"></div><div class="price-labels"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div><p class="muted" style="margin:10px 0 0">Priser leveret af <a style="color:#9dc9ff" href="https://www.elprisenligenu.dk" target="_blank">Elprisen lige nu</a>. Priser kan være uden nettarif.</p></div></section><section class="card radio"><h2><span class="iconbadge">📻</span> Radio direkte</h2><div class="radio-art radio-player"><div class="disc" id="radio-disc">♪</div><div class="radio-controls"><div class="radio-name" id="radio-name">Vælg radiokanal</div><div class="muted" id="radio-status">Klar til afspilning · Live radio</div><div class="radio-stations"><button class="btn green radio-station" data-station="p3" type="button">▶ P3</button><button class="btn radio-station" data-station="p4" type="button">▶ P4 Sjælland</button><button class="btn radio-station" data-station="syd" type="button">▶ Radio Sydhavsøerne</button></div><div class="volume-row"><span>🔉</span><input id="radio-volume" type="range" min="0" max="1" step="0.05" value="0.7" aria-label="Lydstyrke"></div></div></div><audio id="radio-audio" preload="none" src="https://live-icy.gss.dr.dk/A/A05H.mp3"></audio><p class="muted">Radioen spiller direkte her på dashboardet. Tryk Afspil for at starte.</p></section><section class="card dinner"><h2><span class="iconbadge">🍽️</span> Aftensmad-forslag</h2><div class="dinner-box"><div class="dinner-intro" id="dinner-intro">Mangler I inspiration til aftensmad? Tryk på knappen, så finder jeg 3 forslag til jer.</div><div class="dinner-options" id="dinner-options" hidden></div><div class="dinner-actions"><span class="muted" id="dinner-count"></span><button class="btn primary" id="dinner-next" type="button">🍽️ Find aftensmad</button></div></div></section><section class="card events"><h2><span class="iconbadge">📅</span> Det sker i Nakskov <span class="muted" id="events-status">Kommende arrangementer</span><button class="btn event-refresh" id="events-refresh" type="button">↻ Opdater</button></h2><div class="events-list" id="events-list"></div><div class="event-links"><a class="btn" href="https://visesi.dk/nakskov/" target="_blank">Vi ses i Nakskov ↗</a><a class="btn" href="https://govisit.dk/det-sker/det-sker-i-nakskov" target="_blank">GoVisit ↗</a><a class="btn" href="https://nakskovhandel.dk/events-i-nakskov/" target="_blank">Nakskov Handel ↗</a><a class="btn" href="https://hvaderpaa.dk/da/by/nakskov/" target="_blank">Hvad er på? ↗</a></div><p class="muted" style="margin:8px 0 0">Listen viser kommende arrangementer fra den indbyggede oversigt. Kildesiderne åbner for de nyeste arrangementer. Nye events kan ikke automatisk hentes fra alle kilder uden en ekstern API/backend.</p></section><section class="card radar"><h2><span class="iconbadge">🌧️</span> Live regnradar · Lolland</h2><div class="radar-map"><iframe title="Live regnradar over Lolland" src="https://embed.windy.com/embed2.html?lat=54.84&lon=11.25&zoom=8&level=surface&overlay=radar&product=radar&menu=&message=true&marker=true&calendar=now&pressure=true&type=map&location=coordinates&detail=true&detailLat=54.84&detailLon=11.25&metricWind=m%2Fs&metricTemp=%C2%B0C" loading="lazy"></iframe></div><div class="radar-note">Radar kort fra Windy · Zoom og flyt kortet for at se regn, der nærmer sig Vestenskov og Nakskov.</div></section>
+
+
+
+
+</div><div class="footer">Vejr fra Open-Meteo · Nyheder forsøges hentet automatisk · Dashboard til informationsbrug</div></div>
+<script>
+function clock(){const d=new Date();document.getElementById('clock').innerHTML=d.toLocaleTimeString('da-DK',{hour:'2-digit',minute:'2-digit'})+'<small id="date">'+d.toLocaleDateString('da-DK',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+'</small>'}clock();setInterval(clock,1000);
+const dailyJokes=[
+'Hvorfor kan skeletter ikke lyve? Fordi man kan se lige igennem dem.',
+'Hvad sagde den ene væg til den anden? Vi mødes på hjørnet.',
+'Hvorfor gik computeren til lægen? Den havde fået virus.',
+'Hvad kalder man en boomerang, der ikke kommer tilbage? En pind.',
+'Hvorfor er fisk så dårlige til tennis? De er bange for nettet.',
+'Hvad sagde 0 til 8? Flot bælte!',
+'Hvorfor tog bananen solcreme på? Den ville ikke skrælles af solen.',
+'Hvad laver en ko på en trampolin? Mælkeshakes.',
+'Hvorfor blev kalenderen nervøs? Dens dage var talte.',
+'Hvad kalder man en hund, der kan trylle? Labrakadabrador.',
+'Hvorfor kan man ikke stole på trapper? De er altid ude på noget.',
+'Hvad sagde kaffekoppen til sukkeret? Du søder mit liv.',
+'Hvorfor var matematikbogen trist? Den havde for mange problemer.',
+'Hvad er en elektrikers yndlingsdans? Strøm-dans.',
+'Hvorfor gik tomaten over vejen? Den ville ketchup med de andre.',
+'Hvad kalder man en sovende tyr? En bulldozer.',
+'Hvorfor var cyklen træt? Den havde været på hjul hele dagen.',
+'Hvad sagde den ene snebold til den anden? Vi ses, når vi smelter.',
+'Hvorfor er spøgelser dårlige løgnere? Man kan se lige igennem dem.',
+'Hvad kalder man en meget lille mor? En minimor.',
+'Hvorfor tog elevatoren en pause? Den var helt oppe at køre.',
+'Hvad sagde brødet til smørret? Du smører tykt på.',
+'Hvorfor elsker bier matematik? De arbejder med summer.',
+'Hvad kalder man en dinosaur med godt ordforråd? En thesaurus.',
+'Hvorfor kunne lampen ikke holde hemmeligheden? Den lyste op.',
+'Hvad sagde den ene sok til den anden? Vi holder sammen i par.',
+'Hvorfor var støvsugeren populær? Den samlede alle op.',
+'Hvad kalder man en glad citron? En optimistisk citrus.',
+'Hvorfor tog guleroden til fest? Den ville rodde rundt.',
+'Hvad sagde kalenderen til uret? Du har virkelig styr på tiden.'
+];
+function showDailyJoke(){const d=new Date();const key=d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');const n=Number(key);document.getElementById('daily-joke').textContent=dailyJokes[n%dailyJokes.length];}
+showDailyJoke();
+
+const desc={0:'Klart',1:'Næsten klart',2:'Delvist skyet',3:'Overskyet',45:'Tåge',48:'Rimtåge',51:'Let støvregn',53:'Støvregn',55:'Kraftig støvregn',61:'Let regn',63:'Regn',65:'Kraftig regn',71:'Let sne',73:'Sne',75:'Kraftig sne',80:'Regnbyger',81:'Byger',82:'Kraftige byger',95:'Torden'};const emoji={0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌧️',63:'🌧️',65:'🌧️',71:'🌨️',73:'❄️',75:'❄️',80:'🌦️',81:'🌧️',82:'⛈️',95:'⛈️'};function dir(d){return ['N','NØ','Ø','SØ','S','SV','V','NV'][Math.round(d/45)%8]}
+async function weather(p,lat,lon){const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,weather_code&wind_speed_unit=ms&timezone=Europe%2FCopenhagen`;try{const r=await fetch(url);if(!r.ok)throw Error();const c=(await r.json()).current;document.getElementById(p+'-temp').textContent=Math.round(c.temperature_2m)+'°C';document.getElementById(p+'-desc').textContent=desc[c.weather_code]||'Aktuelt vejr';document.getElementById(p+'-emoji').textContent=emoji[c.weather_code]||'🌤️';document.getElementById(p+'-wind').textContent='Vind '+Math.round(c.wind_speed_10m)+' m/s';document.getElementById(p+'-gust').textContent='Vindstød '+Math.round(c.wind_gusts_10m)+' m/s';document.getElementById(p+'-dir').textContent='Retning '+dir(c.wind_direction_10m)}catch(e){document.getElementById(p+'-desc').textContent='Vejrdata kunne ikke hentes – brug DMI/Yr-knapperne'}}weather('alb',54.84,11.11);weather('ves',54.84,11.30);setInterval(()=>{weather('alb',54.84,11.11);weather('ves',54.84,11.30)},900000);
+async function loadNews(){
+ const feeds=[{name:'DR',url:'https://www.dr.dk/nyheder/service/feeds/senestenyt'},{name:'TV 2',url:'https://feeds.services.tv2.dk/api/feeds/nyheder/rss'}];
+ let stories=[];
+ try{
+  for(const f of feeds){try{const u='https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(f.url);const r=await fetch(u);if(!r.ok)continue;const j=await r.json();if(j.items)stories=stories.concat(j.items.slice(0,10).map(x=>({title:x.title,link:x.link,source:f.name,img:x.thumbnail||(x.enclosure&&x.enclosure.link)||''})));}catch(e){}}
+  if(!stories.length)throw Error('no feeds');
+  const track=document.getElementById('ticker-track');
+  let index=0;
+  function renderGroup(){
+   const group=stories.slice(index,index+3);
+   if(group.length<3)group.push(...stories.slice(0,3-group.length));
+   track.innerHTML=group.map(s=>`<a class="news-card" href="${s.link}" target="_blank" rel="noopener">${s.img?`<img src="${s.img}" alt="" loading="lazy" onerror="this.style.display='none'">`:`<img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=300&q=60" alt="Nyhed" loading="lazy">`}<div><div class="news-title">${s.title}</div><div class="news-source">${s.source} · Læs artikel ↗</div></div></a>`).join('');
+   document.getElementById('ticker-status').textContent=`Viser nyhed ${index+1}-${Math.min(index+3,stories.length)} af ${stories.length} · Skifter hvert 10. sekund.`;
+  }
+  renderGroup();
+  if(window.newsGroupTimer)clearInterval(window.newsGroupTimer);
+  window.newsGroupTimer=setInterval(()=>{index=(index+3)%stories.length;renderGroup();},10000);
+ }catch(e){document.getElementById('ticker-track').innerHTML='<div class="news-card"><div class="news-title">Nyhedsfeed kunne ikke hentes lige nu. Brug knapperne nedenfor.</div></div>';document.getElementById('ticker-status').textContent='Nyhedsfeed forsøges igen automatisk.'}
+}
+loadNews();setInterval(loadNews,600000);
+
+
+// Electricity prices: DK2. Parse the actual ElprisenLigeNu response fields.
+async function loadElectricity(){
+ try{
+  const d=new Date();
+  const date=`${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}_DK2`;
+  const r=await fetch(`https://www.elprisenligenu.dk/api/v1/prices/${date}.json`);
+  if(!r.ok)throw Error('API response');
+  const data=await r.json();
+  if(!Array.isArray(data)||!data.length)throw Error('No price rows');
+  const normalized=data.map(x=>({
+    hour:new Date(x.time_start).getHours(),
+    time:new Date(x.time_start),
+    price:Number(x.DKK_per_kWh)
+  })).filter(x=>Number.isFinite(x.price)&&Number.isFinite(x.hour));
+  if(!normalized.length)throw Error('No valid prices');
+  const now=new Date();
+  const current=normalized.find(x=>x.hour===now.getHours()&&x.time.getDate()===now.getDate())||normalized[0];
+  const cheap=normalized.reduce((a,b)=>a.price<b.price?a:b);
+  const expensive=normalized.reduce((a,b)=>a.price>b.price?a:b);
+  const inclVat=n=>n*1.25;
+  const formatPrice=n=>inclVat(n).toLocaleString('da-DK',{minimumFractionDigits:2,maximumFractionDigits:2})+' kr/kWh';
+  document.getElementById('price-current').textContent=formatPrice(current.price);
+  document.getElementById('price-time').textContent=`Kl. ${String(current.hour).padStart(2,'0')}:00 · Spotpris inkl. moms (tariffer/afgifter kan mangle)`;
+  document.getElementById('price-cheapest').textContent=`Billigste: ${String(cheap.hour).padStart(2,'0')}:00 · ${inclVat(cheap.price).toFixed(2)} kr`;
+  document.getElementById('price-expensive').textContent=`Dyreste: ${String(expensive.hour).padStart(2,'0')}:00 · ${inclVat(expensive.price).toFixed(2)} kr`;
+  const min=Math.min(...normalized.map(x=>x.price)),max=Math.max(...normalized.map(x=>x.price));
+  document.getElementById('price-chart').innerHTML=normalized.map(x=>`<div class="price-bar ${x.hour===now.getHours()?'current':''}" title="${String(x.hour).padStart(2,'0')}:00 · ${formatPrice(x.price)}" style="height:${max===min?50:Math.max(5,12+(x.price-min)/(max-min)*78)}%"></div>`).join('');
+ }catch(e){document.getElementById('price-current').textContent='Elpris ikke tilgængelig';document.getElementById('price-time').textContent='Kunne ikke hente dagens priser – prøver igen senere';}
+}
+loadElectricity();setInterval(loadElectricity,1800000);
+// Family-friendly dinner suggestions: reveal 3 random ideas only when the user taps.
+const dinnerIdeas=[
+ {title:'Mørbrad i cremet paprikasovs',desc:'Svinemørbrad i skiver med løg, paprika og en mild fløde-/mælkesovs. Server med ris eller kartofler.',tip:'Kan også laves mildt til Aske.'},
+ {title:'Hjemmelavet lasagne',desc:'Klassisk lasagne med hakket kød, tomat, løg og krydderier – lav gerne en stor portion til rester.',tip:'En familiefavorit og nem at lave i forvejen.'},
+ {title:'Frikadeller med kartofler og brun sovs',desc:'Saftige frikadeller, kartofler, brun sovs og fx broccoli eller gulerødder.',tip:'Klassisk dansk hverdagsmad.'},
+ {title:'Kylling i karry med ris',desc:'Mild karry, kylling, løg og grøntsager i en cremet sovs – server med ris.',tip:'Karryen kan justeres efter smag.'},
+ {title:'Bagt pølse og grøntsager på én plade',desc:'Pølser, kartofler, løg, broccoli og peberfrugt med olie og krydderier i ovnen.',tip:'Nemt på travle dage og minimalt med opvask.'},
+ {title:'Æggekage med bacon og grønt',desc:'Stor æggekage med bacon, løg og broccoli, serveret med rugbrød eller pommes frites.',tip:'Hurtig og billig aftensmad.'},
+ {title:'Hjemmelavet pizza',desc:'Pizza med skinke eller bacon, løg, peberfrugt og ost. Brug det I allerede har i køleskabet.',tip:'God weekendmad.'},
+ {title:'Pasta med kødsovs',desc:'Hakket kød, tomat, løg, hvidløg og krydderier med pasta og lidt revet ost.',tip:'Lav ekstra kødsovs til fryseren.'},
+ {title:'Boller i karry',desc:'Kødboller i mild karrysovs med ris og evt. æbletern.',tip:'En klassiker, som kan laves mild.'},
+ {title:'Tarteletter med høns i asparges',desc:'Tarteletter med cremet fyld af kylling og asparges.',tip:'Lækker klassisk dansk aftensmad.'},
+ {title:'Flæskesteg med kartofler',desc:'Flæskesteg med sprøde svær, kartofler, sovs og rødkål.',tip:'God når der er tid til lidt ekstra.'},
+ {title:'Koteletter i fad',desc:'Koteletter med tomat, fløde, løg og paprika – server med ris.',tip:'Fadret, der passer godt til en travl familie.'},
+ {title:'Cremet pasta med kylling',desc:'Kylling, pasta, fløde/mælk, broccoli og krydderier.',tip:'Nem ret, der kan varieres med grøntsager.'},
+ {title:'Hakkebøffer med bløde løg',desc:'Hakkebøffer med bløde løg, kartofler og brun sovs.',tip:'Dansk klassiker.'},
+ {title:'Pitabrød med fyld',desc:'Pitabrød med kylling eller kebab, salat, agurk, tomat og dressing.',tip:'Alle kan selv fylde deres pita.'},
+ {title:'Ovn-bagt laks med kartofler',desc:'Laks med citron, kartofler og grøntsager i ovnen.',tip:'En nem fiskedag.'},
+ {title:'Chili con carne',desc:'Hakket kød, bønner, tomat og mild chili med ris eller brød.',tip:'Krydderiet kan sættes på bordet separat.'},
+ {title:'Bacon-cheeseburgere',desc:'Hjemmelavede burgere med bøf, bacon, ost, salat og ovnkartofler.',tip:'Hyggelig weekendmad.'},
+ {title:'Svensk pølseret',desc:'Pølser, kartofler, løg og paprika i cremet tomatsovs.',tip:'Billig, nem og mættende.'},
+ {title:'Stegt flæsk med persillesovs',desc:'Stegt flæsk, kartofler og persillesovs med evt. grønt til.',tip:'En god klassiker.'}
+];
+let dinnerShown=false;
+function showDinnerSuggestions(){
+ const options=document.getElementById('dinner-options');
+ const intro=document.getElementById('dinner-intro');
+ let pool=dinnerIdeas.slice();
+ for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+ const chosen=pool.slice(0,3);
+ options.innerHTML=chosen.map((x,i)=>`<div class="dinner-option"><h3>${i+1}. ${x.title}</h3><p>${x.desc}</p><p class="dinner-tip">${x.tip}</p></div>`).join('');
+ options.hidden=false;intro.textContent='Her er 3 forslag til aftensmad. Tryk igen, hvis I vil have 3 nye idéer.';
+ dinnerShown=true;document.getElementById('dinner-count').textContent='3 tilfældige forslag';document.getElementById('dinner-next').textContent='🔄 3 nye forslag';
+}
+document.getElementById('dinner-next').addEventListener('click',showDinnerSuggestions);
+// Multi-station radio controls: one shared audio element, one station at a time.
+const radioAudio=document.getElementById('radio-audio');
+const radioStatus=document.getElementById('radio-status');
+const radioDisc=document.getElementById('radio-disc');
+const radioVolume=document.getElementById('radio-volume');
+const radioName=document.getElementById('radio-name');
+const radioButtons=[...document.querySelectorAll('.radio-station')];
+const stations={
+ p3:{name:'DR P3',url:'https://live-icy.gss.dr.dk/A/A05H.mp3'},
+ // Direct MP3 stream for P4 Sjælland, served over HTTPS.
+ p4:{name:'DR P4 Sjælland',url:'https://live-icy.dr.dk/A/A11H.mp3',fallback:'https://www.dr.dk/lyd/p4sjaelland'},
+ // Direct stream published by Radio Sydhavsøerne (HTTP; may be blocked as mixed content on HTTPS pages).
+ syd:{name:'Radio Sydhavsøerne',url:'http://sydhav.radiostreaming.dk:8050/sydhav',fallback:'https://sydhavsradio.dk/app-og-netradio/'}
+};
+let activeStation=null;
+radioAudio.volume=0.7;
+radioVolume.addEventListener('input',()=>radioAudio.volume=Number(radioVolume.value));
+function setActiveButton(key){radioButtons.forEach(b=>{b.classList.toggle('active',b.dataset.station===key);b.textContent=(b.dataset.station===key&& !radioAudio.paused?'⏸ ':'▶ ')+({p3:'P3',p4:'P4 Sjælland',syd:'Radio Sydhavsøerne'}[b.dataset.station]);});}
+radioButtons.forEach(button=>button.addEventListener('click',async()=>{
+ const key=button.dataset.station, station=stations[key];
+ if(activeStation===key&&!radioAudio.paused){radioAudio.pause();radioStatus.textContent='Pauset · '+station.name;radioDisc.style.animationPlayState='paused';setActiveButton(key);return;}
+ if(activeStation!==key){radioAudio.pause();radioAudio.src=station.url;radioAudio.load();activeStation=key;radioName.textContent=station.name;}
+ radioStatus.textContent='Starter · '+station.name;
+ try{await radioAudio.play();radioStatus.textContent='Spiller live · '+station.name;radioDisc.style.animationPlayState='running';setActiveButton(key);}
+ catch(err){radioStatus.innerHTML='Stream kunne ikke startes. <a href="'+(station.fallback||'https://www.dr.dk/lyd/p3')+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Åbn radioens hjemmeside</a>';radioDisc.style.animationPlayState='paused';setActiveButton(key);}
+}));
+radioAudio.addEventListener('playing',()=>{radioStatus.textContent='Spiller live · '+(stations[activeStation]?.name||'Radio');radioDisc.style.animationPlayState='running';setActiveButton(activeStation);});
+radioAudio.addEventListener('error',()=>{const station=stations[activeStation];radioStatus.innerHTML='Streamfejl. <a href="'+(station?.fallback||'https://sydhavsradio.dk/')+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Åbn radioens hjemmeside</a>';radioDisc.style.animationPlayState='paused';});
+
+// iPad/Safari-compatible auto-scroll. Drive the document's actual scrolling element directly.
+(function autoDashboardScroll(){
+ const USER_PAUSE_MS=25000, EDGE_PAUSE_MS=5000, STEP=1, TICK_MS=120;
+ let direction=1, pausedUntil=0, edgePauseUntil=0, userInteracting=false;
+ const root=()=>document.scrollingElement || document.documentElement;
+ function pauseFromUser(){ if(!userInteracting) pausedUntil=Date.now()+USER_PAUSE_MS; }
+ ['touchstart','pointerdown','wheel','keydown'].forEach(evt=>window.addEventListener(evt,pauseFromUser,{passive:true}));
+ function tick(){
+  const now=Date.now(), el=root(), max=Math.max(0,el.scrollHeight-el.clientHeight);
+  if(max>10 && now>=pausedUntil && now>=edgePauseUntil){
+   const y=el.scrollTop;
+   if(direction>0 && y>=max-2){direction=-1;edgePauseUntil=now+EDGE_PAUSE_MS;}
+   else if(direction<0 && y<=2){direction=1;edgePauseUntil=now+EDGE_PAUSE_MS;}
+   else {
+    const next=Math.max(0,Math.min(max,y+direction*STEP));
+    userInteracting=true;
+    el.scrollTop=next;
+    document.documentElement.scrollTop=next;
+    document.body.scrollTop=next;
+    userInteracting=false;
+   }
+  }
+  setTimeout(tick,TICK_MS);
+ }
+ setTimeout(tick,2500);
+})();
+
+// Nakskov events: show only future dates, sort by date, refresh display hourly.
+(function nakskovEvents(){
+ const events=[
+ {date:'2026-11-26',time:'19:30–20:45',title:'Kai Normann og krigen',place:'Nakskov Teatersal',desc:'Musikalsk teater om Kai Normann Andersen og besættelsestiden.'},
+ {date:'2026-11-27',time:'08:00–20:00',title:'Black Friday i Nakskov',place:'Nakskov by',desc:'Black Friday i byens butikker.'},
+ {date:'2026-11-27',time:'15:00–20:00',title:'Jul på Torvet',place:'Axeltorv',desc:'Julebyen åbner med julehygge og aktiviteter.'},
+ {date:'2026-11-28',time:'10:00–15:00',title:'Jul på Torvet',place:'Axeltorv',desc:'Julemarked og aktiviteter i centrum.'},
+ {date:'2026-11-28',time:'11:00–14:30',title:'Nakskov Loppemarked',place:'Østergade 18',desc:'Lokalt loppemarked.'},
+ {date:'2026-11-29',time:'10:00–15:00',title:'Jul på Torvet',place:'Axeltorv',desc:'Julemarked og hyggelige aktiviteter.'},
+ {date:'2026-11-30',time:'16:00–17:15',title:'Litteraturoplevelser i fællesskab',place:'Nakskov Bibliotek',desc:'Fælles læsning, samtale, kaffe og snacks. Gratis.'},
+ {date:'2026-12-01',time:'10:00',title:'Børnehavernes jul',place:'Sankt Nikolai Kirke',desc:'Julearrangement for børnehaver.'},
+ {date:'2026-12-02',time:'10:00–12:00',title:'Små hænder, store historier – babyaftryk',place:'Nakskov Bibliotek',desc:'Lav hånd- og fodaftryk med baby i ler.'},
+ {date:'2026-12-02',time:'14:30–16:30',title:'Jule-klippe-klistre',place:'Nakskov Bibliotek',desc:'Kreativ juleworkshop for børn og voksne.'},
+ {date:'2026-12-02',time:'17:30–19:30',title:'Min tid på værftet',place:'Nakskov Bibliotek',desc:'Fællesspisning og foredrag om livet på Nakskov Skibsværft. Ca. 150 kr.'},
+ {date:'2026-12-02',time:'14:00',title:'Sangcafé',place:'Stormarkskirken',desc:'Musik og fællessang.'},
+ {date:'2026-12-04',time:'17:00 / 20:00',title:'Julebal',place:'Nakskov Idrætscenter',desc:'Julefest med DJ og buffetmulighed. 18+.'},
+ {date:'2026-12-05',time:'10:00–15:00',title:'Jul på Torvet',place:'Axeltorv',desc:'Julemarked og aktiviteter.'},
+ {date:'2026-12-06',time:'15:00',title:'Julekoncert',place:'Stormarkskirken',desc:'Julemusik og koncert.'},
+ {date:'2026-12-08',time:'19:00',title:'Jul i Stormarkskirken',place:'Stormarkskirken',desc:'Julekoncert med Lolland Musikskoles elever. Gratis adgang.'},
+ {date:'2026-12-09',time:'14:30',title:'Jule-klippe-klistre',place:'Nakskov Bibliotek',desc:'Juleværksted for børn og voksne.'},
+ {date:'2026-12-12',time:'10:00–15:00',title:'Jul på Torvet',place:'Axeltorv',desc:'Julemarked og aktiviteter.'},
+ {date:'2026-12-13',time:'10:00–15:00',title:'Jul på Torvet + Lucia',place:'Axeltorv',desc:'Julemarked. Luciaoptog kl. 13.'},
+ {date:'2026-12-16',time:'14:30',title:'Jule-klippe-klistre',place:'Nakskov Bibliotek',desc:'Juleværksted for børn og voksne.'},
+ {date:'2026-12-17',time:'18:30',title:'Privatskolens juleafslutning',place:'Sankt Nikolai Kirke',desc:'Juleafslutning med Janne Svensson.'},
+ {date:'2026-12-19',time:'10:00–15:00',title:'Jul på Torvet',place:'Axeltorv',desc:'Julemarked og juleaktiviteter.'},
+ {date:'2026-12-20',time:'10:00–15:00',title:'Jul på Torvet – Hr. Skæg',place:'Axeltorv',desc:'Julemarkedets sidste dag. Hr. Skæg kl. 13.'},
+ {date:'2027-01-16',time:'15:00',title:'Nytårskoncert',place:'Stormarkskirken',desc:'Nytårskoncert.'},
+ {date:'2027-01-16',time:'',title:'Fritidsfestivalen 2027',place:'Nakskov Idrætscenter',desc:'Festival med fokus på fritidsaktiviteter og foreninger.'},
+ {date:'2027-01-30',time:'20:00',title:'Kandis',place:'Nakskov Idrætscenter',desc:'Koncert med Kandis.'},
+ {date:'2027-02-12',time:'',title:'Dansk Slager Parade 2027',place:'Nakskov Teatersal',desc:'Dansk slager-musik.'},
+ {date:'2027-02-26',time:'20:00',title:'René Dahl Andersen – Hærdet',place:'Campus Nakskov, Teatersal',desc:'Foredrag/show om livet som politibetjent på Vesterbro. Ca. 275 kr.'}
+ ];
+ const list=document.getElementById('events-list'),status=document.getElementById('events-status'),refresh=document.getElementById('events-refresh');
+ const dateFmt=new Intl.DateTimeFormat('da-DK',{day:'2-digit',month:'short'});
+ function render(){const now=new Date();now.setHours(0,0,0,0);const upcoming=events.filter(e=>{const d=new Date(e.date+'T00:00:00');return d>=now}).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,9);
+ list.innerHTML=upcoming.map(e=>{const d=new Date(e.date+'T00:00:00');const day=dateFmt.format(d).replace('.','');const weekday=new Intl.DateTimeFormat('da-DK',{weekday:'short'}).format(d);return `<div class="event-item"><div class="event-date">${day}<small>${weekday}</small></div><div class="event-info"><div class="event-title">${e.title}</div><div class="event-meta">${e.time?e.time+' · ':''}${e.place}</div><div class="event-desc">${e.desc}</div></div></div>`}).join('');
+ status.textContent=upcoming.length?`${upcoming.length} kommende · opdateret ${new Intl.DateTimeFormat('da-DK',{hour:'2-digit',minute:'2-digit'}).format(new Date())}`:'Ingen kommende arrangementer i oversigten';}
+ render();refresh.addEventListener('click',render);setInterval(render,3600000);
+})();
+</script></body></html>
