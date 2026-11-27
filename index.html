@@ -316,7 +316,7 @@ radioAudio.addEventListener('error',()=>{const station=stations[activeStation];r
 
 // iPad/Safari-compatible auto-scroll. Drive the document's actual scrolling element directly.
 (function autoDashboardScroll(){
- const USER_PAUSE_MS=5000, EDGE_PAUSE_MS=5000, STEP=1, TICK_MS=480;
+ const USER_PAUSE_MS=5000, EDGE_PAUSE_MS=5000, STEP=1, TICK_MS=120;
  let direction=1, pausedUntil=0, edgePauseUntil=0, userInteracting=false;
  const root=()=>document.scrollingElement || document.documentElement;
  function pauseFromUser(){ if(!userInteracting) pausedUntil=Date.now()+USER_PAUSE_MS; }
